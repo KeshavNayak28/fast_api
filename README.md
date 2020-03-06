@@ -1,11 +1,11 @@
-## FastApi
+# FastApi
 The code above performs various CRUD operations with help of [fastapi](https://fastapi.tiangolo.com/) and 
 [mongodb](https://docs.mongodb.com/). 
 
 The code above is written using fastapi with help of asynchronous frameworks that provide high-performance network and 
 web-servers, database connection libraries, distributed task queues, etc.
 
-#Dependencies & Requirements
+##Dependencies & Requirements
 
 The python version used is 3.8+ and runs on [uvicorn](https://www.uvicorn.org/) server. 
 
@@ -26,7 +26,8 @@ You can install uvicorn, fastapi and mongodb using the python package manager
 ```
 Before running the above command make sure you have a local environment.
 
-#Running the Program
+##Running the Program
+
 To run the program use the command below
 ```bash
  uvicorn app:app --reload
