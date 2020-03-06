@@ -1,5 +1,6 @@
 ## FastApi
-The code above performs various CRUD operations with help of [fastapi](https://fastapi.tiangolo.com/) and [mongodb](https://docs.mongodb.com/). 
+The code above performs various CRUD operations with help of [fastapi](https://fastapi.tiangolo.com/) and 
+[mongodb](https://docs.mongodb.com/). 
 
 The code above is written using fastapi with help of asynchronous frameworks that provide high-performance network and 
 web-servers, database connection libraries, distributed task queues, etc.
@@ -18,7 +19,8 @@ To install python 3.8 use the command below.
 
 ```
 
-You can install uvicorn, fastapi and mongodb using the python package manager [pip3](https://pip.pypa.io/en/stable/installing/) and running the requirements.txt file.
+You can install uvicorn, fastapi and mongodb using the python package manager 
+[pip3](https://pip.pypa.io/en/stable/installing/) and running the requirements.txt file.
 ```bash
  pip3 intall -r requirements.txt
 ```
