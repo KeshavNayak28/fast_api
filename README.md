@@ -15,7 +15,7 @@ To install python 3.8 use the command below.
  sudo apt-get update
  sudo apt-get install python3.8
     
- sudo apt-get install python3.8-venv python3.8-dev
+ sudo apt-get install python3.8-venv
 
 ```
 
