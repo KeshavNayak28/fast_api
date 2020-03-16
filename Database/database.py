@@ -6,12 +6,12 @@ class Database:
 
     @staticmethod
     def intialize():
-        client = pymongo.MongoClient(Database.uri)
-        Database.DATABASE = client['config']
+        client =  pymongo.MongoClient(Database.uri)
+        Database.DATABASE = client['fast']
 
     @staticmethod
     def insert(collection, data):
-        Database.DATABASE[collection].insert(data)
+        return Database.DATABASE[collection].insert(data)
 
     @staticmethod
     def find(collection, query):
@@ -28,4 +28,8 @@ class Database:
 
     @staticmethod
     def update( myquery, updates, collection):
-        return Database.DATABASE[collection].update_one(myquery, updates)
+        return  Database.DATABASE[collection].update_one(myquery, updates)
+
+    @staticmethod
+    def aggregate(collection, pipeline):
+        return Database.DATABASE[collection].aggregate(pipeline)

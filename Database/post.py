@@ -4,12 +4,12 @@ class Book:
 
     @staticmethod
     def add_to_mongo_directly(data):
-        mongo_data=Database.insert(collection='posts', data=data)
+        mongo_data= Database.insert(collection='posts', data=data)
         return mongo_data
 
     @staticmethod
     def from_mongo(query):
-        mongo_data = Database.find_one(collection='posts', query={'isbn':int(query)})
+        mongo_data =  Database.find_one(collection='posts', query={'isbn':int(query)})
         if mongo_data == None:
             return None
         else:
