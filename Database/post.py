@@ -20,5 +20,10 @@ class Book:
         Database.update(collection='posts', myquery={'isbn':int(query)}, updates={'$set':updates})
 
     @staticmethod
-    def delete_from_mongo(query):
-        Database.delete_one(collection='posts', query={'isbn':int(query)})
+    async def delete_from_mongo(query):
+       await Database.delete_one(collection='posts', query={'isbn':int(query)})
+
+    @staticmethod
+    async def find_isbn_mongo(query):
+        isbn_book =  [isbn_book for isbn_book in Database.find(collection='posts', query={'isbn': int(query)})]
+        return isbn_book

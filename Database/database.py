@@ -23,7 +23,7 @@ class Database:
 
 
     @staticmethod
-    def delete_one(collection, query):
+    async def delete_one(collection, query):
         return Database.DATABASE[collection].delete_one(query)
 
     @staticmethod
