@@ -2,7 +2,7 @@ from starlette.testclient import TestClient
 from app import app
 
 
-''''''
+'''srtting up environment for __main__ app'''
 client = TestClient(app)
 
 
@@ -30,9 +30,9 @@ def test_delete_book(isbn=8):
 
 '''------------------------------------------------Test for Users----------------------------------------------------'''
 
-#def test_create_user():
-#    response = client.post('/users', json={"user_name": "Madhav Nayak", "email": "madhav123@example.com", "user_id": 3})
-#    assert response.status_code == 201
+def test_create_user():
+    response = client.post('/users', json={"user_name": "Madhav Nayak", "email": "madhav123@example.com", "user_id": 3})
+    assert response.status_code == 201
 
 def test_get_by_user_id(user_id = 2):
     response = client.get('/users/{}'.format(user_id))
