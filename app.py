@@ -21,7 +21,7 @@ Database.intialize()
 
 
 '''------------------------------------------Purchase Collection-----------------------------------------------------'''
-@app.get('ç',status_code=HTTP_201_CREATED, tags=['Purchases'])
+@app.get('/purcahse/{user_id}/{isbn}',status_code=HTTP_201_CREATED, tags=['Purchases'])
 async def user_purchase(user_id, isbn):
     user_detail = await get_by_user_id(user_id=int(user_id))
     user = {
