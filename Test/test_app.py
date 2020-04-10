@@ -31,7 +31,7 @@ def test_delete_book(isbn=8):
 '''------------------------------------------------Test for Users----------------------------------------------------'''
 
 def test_create_user():
-    response = client.post('/users', json={"user_name": "Madhav Nayak", "email": "madhav123@example.com", "user_id": 3})
+    response = client.post('/users', json={"user_name": "Madhav Nayak", "email": 'madhav123@example.com', "user_id": 3})
     assert response.status_code == 201
 
 def test_get_by_user_id(user_id = 2):
@@ -45,7 +45,7 @@ def test_get_by_user_id(user_id = 2):
 
 '''-----------------------------------------------Test for Purchases-------------------------------------------------'''
 
-def test_user_purchase(user_id=3, isbn=1):
+def test_user_purchase(user_id=2, isbn=1):
     response = client.get('/purchase/{}/{}'.format(user_id,isbn))
     assert response.status_code == 201
 

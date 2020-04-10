@@ -14,5 +14,5 @@ class User:
 
     @staticmethod
     async def check_for_user_detail(query):
-        mongo_email = [mongo_email for mongo_email in Database.find(collection='users', query= {'email':int(query)})]
+        mongo_email = [mongo_email for mongo_email in Database.find(collection='users', query= {'email':query})]
         return mongo_email

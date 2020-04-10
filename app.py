@@ -57,7 +57,7 @@ async def user_purchase_detail(user_id):
 @app.post('/users', status_code=HTTP_201_CREATED, tags=['Users'])
 async def create_user(user:validation.Create_User =Body(...),):
     user_dict = user.dict()
-    user_check= await User.check_for_user_detail(user_dict['user_id'])
+    user_check= await User.check_for_user_detail(int(user_dict['user_id']))
     user_email_check = await User.check_for_user_detail(user_dict['email'])
     if len(user_email_check)>0:
         raise HTTPException(status_code=409, detail= 'user email {} already exits'.format(user_dict['email']))
