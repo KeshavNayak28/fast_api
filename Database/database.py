@@ -14,11 +14,11 @@ class Database:
         return Database.DATABASE[collection].insert(data)
 
     @staticmethod
-    def find(collection, query):
+    def find_data(collection, query):
         return Database.DATABASE[collection].find(query)
 
     @staticmethod
-    def find_one(collection, query):
+    def find_one_data(collection, query):
         return Database.DATABASE[collection].find_one(query)
 
 
@@ -33,3 +33,9 @@ class Database:
     @staticmethod
     def aggregate(collection, pipeline):
         return Database.DATABASE[collection].aggregate(pipeline)
+
+    @staticmethod
+    def index_create(collection, index):
+        return Database.DATABASE[collection].create_index(index)
+
+

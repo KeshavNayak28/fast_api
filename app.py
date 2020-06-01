@@ -3,10 +3,11 @@ from fastapi import FastAPI, Body, Query, HTTPException
 from Database.database import Database
 from Database.post import Book
 from Database.login import User
+from Database.search import Search
 from Database.purchase import Purchase
 import datetime
 from Module import validation
-from typing import List
+from typing import List, Union
 
 app = FastAPI()
 
@@ -15,6 +16,7 @@ app = FastAPI()
 mongo_book = Book
 mongo_user = User
 mongo_purchase = Purchase
+mongo_search = Search
 
 '''initializes Database connection to deault port 27017'''
 Database.intialize()
@@ -107,9 +109,10 @@ async def add_book_to_mongo(books: List[validation.Add_Book] =Body(...)):
     for book in books:
         book_dict = book.dict()
         book_check = await mongo_book.find_isbn_mongo(book_dict['isbn'])
-        print(book_check)
         if len(book_check) == 0:
             book_dict.update({'date_of_creation':datetime.datetime.now()})
+            print(book_dict['book_detail'])
+            book_dict['book_detail'].update({'avg_reading_time': '{}min'.format(book_dict['book_detail']['pages'] * 2)})
             mongo_book.add_to_mongo_directly(book_dict)
             book_dict['_id'] = str(book_dict['_id'])
             new_collection.append(book_dict)
@@ -148,3 +151,28 @@ async def delete_from_mongo(isbn:int):
     else:
         await mongo_book.delete_from_mongo(isbn)
         return 'Book with isbn {} deleted'.format(isbn)
+
+
+'''------------------------------------------------Search-----------------------------------------------------------'''
+
+@app.get('/search/name/{text}', status_code=HTTP_202_ACCEPTED, tags=['Search'])
+async def search_book_name(query_value: str):
+    search_result=[]
+    search_output =  mongo_search.query_score_name(query_value)
+    for result in search_output:
+        result['_id'] = str(result['_id'])
+        search_result.append(result)
+    if search_result == []:
+        return 'Book with given name not found'
+    else:
+        return search_result
+
+
+@app.get('/search/page/{page_no}', status_code=HTTP_202_ACCEPTED, tags=['Search'])
+async def search_book_page(page_no:int):
+    search_result = []
+    search_output =  mongo_search.query_score_page(page_no)
+    for result in search_output:
+        result['_id'] = str(result['_id'])
+        search_result.append(result)
+    return search_result
